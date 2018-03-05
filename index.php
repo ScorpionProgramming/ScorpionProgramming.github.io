@@ -2,11 +2,11 @@
 <html lang="de">
 
 <head>
-    <?php include("includes.html");?>
+    <?php include("www/includes.html");?>
 </head>
 
 <body>
-    <?php include("header.html");?>
+    <?php include("www/header.html");?>
     <main role="main" class="container">
         <div class="starter-template">
             <h1>Bootstrap starter template</h1>
