@@ -9,7 +9,7 @@
     <?php include("www/header.html");?>
 
      <?php
-        header("Location: /Schule/www/home.php");
+        header("Location: /www/home.php");
         exit;
     ?> 
 
