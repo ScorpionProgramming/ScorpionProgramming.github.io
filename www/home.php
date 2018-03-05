@@ -2,16 +2,11 @@
 <html lang="de">
 
 <head>
-    <?php include("www/includes.html");?>
+    <?php include("includes.html");?>
 </head>
 
 <body>
-    <?php include("www/header.html");?>
-
-     <?php
-        header("Location: /Schule/www/home.php");
-        exit;
-    ?> 
+    <?php include("header.html");?>
 
     <main role="main" class="container">
         <div class="starter-template">
