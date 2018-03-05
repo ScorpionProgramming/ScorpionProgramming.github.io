@@ -2,7 +2,7 @@
 $id = 1;
 $record = null;
 
-$db = new mysqli("localhost", "root", "", "lehrer");
+$db = new mysqli("localhost", "root", "", "Lehrer");
 if ($db->connect_errno) {
     printf("Connect failed: %s\n", $db->connect_error);
     exit();
