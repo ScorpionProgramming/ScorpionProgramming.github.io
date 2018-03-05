@@ -2,7 +2,7 @@ CREATE TABLE `faecher` (
  `id` int(11) NOT NULL,
  `bezeichnung` varchar(50) NOT NULL,
  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 CREATE TABLE `lehrer` (
  `id` int(11) NOT NULL,
@@ -11,10 +11,21 @@ CREATE TABLE `lehrer` (
  `email` varchar(50) NOT NULL,
  `passwort` varchar(32) NOT NULL,
  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 CREATE TABLE `lehrer_faecher` (
  `lehrer` int(11) NOT NULL,
  `fach` int(11) NOT NULL,
  PRIMARY KEY (`lehrer`,`fach`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+CREATE TABLE `kurs` (
+ `id` int(11) NOT NULL,
+ `bezeichnung` varchar(50) NOT NULL,
+ `lehrerID` int(11) NOT NULL,
+ `fachID` int(11) NOT NULL,
+ PRIMARY KEY (`id`),
+ UNIQUE KEY `bezeichnung` (`bezeichnung`),
+ UNIQUE KEY `fachID` (`fachID`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
