@@ -48,4 +48,6 @@ mysqli_close($con);
 
 </body>
     <?php require_once("JSincludes.html");?>
+    <script src="..\script\schueler.js"></script>
+       
 </html>
