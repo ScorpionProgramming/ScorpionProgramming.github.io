@@ -47,16 +47,32 @@
                 echo "<option>$row[1]</option>";
             }
         }
+
+        function saveKurs(){
+            //kopiert aus "schueler.php"
+            $connection = connect();
+            if($connection != null){
+                echo "hidden: ".$_POST['hiddenID'];
+                $id = ($_POST['hiddenID'] < 0) ? getNextID() : $_POST['hiddenID'];
+                $kursBez = checkIfEmpty($_POST['kursBez']);
+                $query = "INSERT INTO planer.kurs (id, bezeichnung, lehrerID, fachID) VALUES ($id, $nachname, $kursBez, $lehrerID, $kurs);";
+                
+                //nochmal schauen was hier gemacht werden muss
+                //$result = $connection->query($query);
+
+                //kurs_schueler($kurs, $id, $connection);
+            }
+        }
     ?>
 
     <form>
         <div class="form-group">
             <label for="inputAddress">Kurs Bezeichnung</label>
-            <input type="text" class="form-control" id="inputKurs" placeholder="Kursname angeben...">
+            <input type="text" class="form-control" id="inputKurs" placeholder="Kursname angeben..." name=kursBez>
         </div>
         <div class="form-group col-md-4">
             <label for="inputState">zuständiges Fach:</label>
-            <select id="inputState" class="form-control">
+            <select id="inputState" class="form-control" name=fach>
                 <option selected>Fach auswählen...</option>
                 <!-- <option>...</option> -->
                 <?php
