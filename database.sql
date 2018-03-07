@@ -62,7 +62,6 @@ CREATE TABLE IF NOT EXISTS `schueler` (
   `vorname` varchar(50) NOT NULL,
   `email` varchar(50) DEFAULT NULL,
   `geburtstag` date DEFAULT NULL,
-  `kursKlasse` varchar(50) DEFAULT NULL,
   UNIQUE KEY `unique ind` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -70,7 +69,8 @@ CREATE TABLE IF NOT EXISTS `schueler` (
 -- Exportiere Struktur von Tabelle planer.schueler_klasse
 CREATE TABLE IF NOT EXISTS `schueler_klasse` (
   `schueler` int(11) NOT NULL,
-  `klasse` int(11) NOT NULL
+  `klasse` int(11) NOT NULL,
+   PRIMARY KEY (`schueler`,`klasse`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- Daten Export vom Benutzer nicht ausgewählt
