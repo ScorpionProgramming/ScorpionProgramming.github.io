@@ -1,3 +1,8 @@
+function logout() {
+	sessionStorage.clear();
+	location.reload();
+};
+
 function addRowHandlers() {
     var table = document.getElementById("schuelerTableBody");
     var rows = table.getElementsByTagName("tr");
