@@ -19,3 +19,7 @@ table, td, th {
 th {
   text-align: left;
 }
+
+#logo {
+	max-width: 100%;
+	}
