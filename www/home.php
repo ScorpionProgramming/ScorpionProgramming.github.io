@@ -37,5 +37,5 @@
     </main>
     <!-- /.container -->
 </body>
-
 </html>
+<?php include("JSIncludes.html");?>

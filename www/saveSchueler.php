@@ -1,5 +1,4 @@
 <?php
-    require_once("includes.html");
     require_once("connectDB.php");
     $con = connect();
     if($con != null){
@@ -11,8 +10,8 @@
         //$connection = connect();
         if($connection != null){
             if ($_POST['hiddenID'] < 0){
+                echo "insert ";
                 $id = getNextID();
-
                 $nachname = checkIfEmpty($_POST['nachname']);
                 $vorname = checkIfEmpty($_POST['vorname']);
                 $email = checkIfEmpty($_POST['email']);
@@ -28,6 +27,20 @@
         }else{
             die;
         }
+    }
+
+    function getNextID(){
+        $nextID = -1;
+        $queryResult = getQueryResult("Select MAX(id)+1 from planer.schueler");
+        if ($queryResult != null){
+            $firstrow = mysqli_fetch_row($queryResult);
+            if($firstrow[0] == 0){
+                $nextID = 1;
+            }else{
+                $nextID = $firstrow[0];
+            }
+        }
+        return $nextID;
     }
 
     function update($connection){
