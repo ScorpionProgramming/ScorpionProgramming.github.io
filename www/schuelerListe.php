@@ -39,10 +39,13 @@ while($row = mysqli_fetch_array($result)) {
 }
 echo "</tbody></table>";
 
+
 mysqli_close($con);
 ?>
 <br>
+<button type="button" id="neuerSchueler">Neuer Schueler</button>
 <div id="schuelerEdit"><b>Schueler hier</b></div>
+
 </body>
     <?php require_once("JSincludes.html");?>
 </html>

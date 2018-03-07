@@ -10,12 +10,12 @@ function addRowHandlers() {
                     var id = cell.innerHTML;
                     //alert("id:" + id);
                     showSchueler(id);
-                    jQuery.ready();
                 };
             };
         currentRow.onclick = createClickHandler(currentRow);
     }
 }
+window.onload = addRowHandlers();
 
 function showSchueler(schuelerID){
     if (window.XMLHttpRequest) {
@@ -41,9 +41,25 @@ $(document).on('click','#butSub',function(e) {
            type: "POST",
            url: "saveSchueler.php",
            success: function(data){
-                alert("Data Save: " + data);
+                alert("Schüler gespeichert: ");
            }
   });
 });
 
-window.onload = addRowHandlers();
+$(document).on('click','#neuerSchueler',function(e) {
+    if (window.XMLHttpRequest) {
+        // code for IE7+, Firefox, Chrome, Opera, Safari
+        xmlhttp = new XMLHttpRequest();
+    } else {
+        // code for IE6, IE5
+        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+    }
+    xmlhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            document.getElementById("schuelerEdit").innerHTML = this.responseText;
+        }
+    };
+    xmlhttp.open("GET","schuelerEdit.php?id="+ -1,true);
+    xmlhttp.send();
+});
+
