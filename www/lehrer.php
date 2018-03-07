@@ -2,8 +2,8 @@
 $id = 1;    //lehrer ID
 $record = null;
 $writeSuccess = false;
-
-$db = new mysqli("localhost", "root", "", "lehrer"); //TODO: Datenbank ändern.
+require_once("connectDB.php");
+$db = connect();//= new mysqli("localhost", "root", "", "planer"); //TODO: Datenbank ändern.
 if ($db->connect_errno) {
     printf("Connect failed: %s\n", $db->connect_error);
     exit();
