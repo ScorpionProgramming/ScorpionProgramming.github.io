@@ -6,13 +6,19 @@
 		<link rel="stylesheet" type="text/css" href="../style/login.css">
     </head>
   <body class="text-center">
+	<?php 
+		if(isset($errorMessage)) {
+			echo $errorMessage;
+		}
+	?>
+  
     <form action="?login=1" method="post" class="form-signin">
       Planner<img class="mb-4" src="../images/logo.png" alt="logo">rama
       <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
       <label for="inputEmail" class="sr-only">Email address</label>
-      <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+      <input type="email" name="email" id="inputEmail" class="form-control" maxlength="250" placeholder="Email address" required autofocus>
       <label for="inputPassword" class="sr-only">Password</label>
-      <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+      <input type="password" name="password" id="inputPassword" class="form-control" maxlength="250" placeholder="Password" required>
       <!--<div class="checkbox mb-3">
         <label>
           <input type="checkbox" value="remember-me"> Remember me
@@ -29,21 +35,28 @@
 session_start();
  $pdo = connect();
 if(isset($_GET['login'])) {
-	echo "dsfvdfbgrf";
     $email = $_POST['email'];
-    $passwort = $_POST['passwort'];
+    $passwort = $_POST['password'];
     
-    $statement = $pdo->prepare("SELECT * FROM users WHERE email = :email");
-    $result = $statement->execute(array('email' => $email));
-    $user = $statement->fetch();
-        
+    $statement = "SELECT * FROM lehrer WHERE email = '".$email."';";
+    $result = getQueryResult($statement);
+    $row = mySQLi_fetch_assoc($result);  
+	  
     //Überprüfung des Passworts
-    if ($user !== false && password_verify($passwort, $user['passwort'])) {
-        $_SESSION['userid'] = $user['id'];
-        die('Login erfolgreich. Weiter zu <a href="geheim.php">internen Bereich</a>');
+    if ($row !== false && password_verify($passwort, $row['passwort'])) {
+        $_SESSION['userid'] = $row['id'];
+        //@todo weiterleiten
+		redirect('home.php');
     } else {
-        $errorMessage = "E-Mail oder Passwort war ungültig<br>";
+        $errorMessage = "<br>E-Mail oder Passwort war ungültig<br>";
     }
-    
+}
+
+function redirect($url, $statusCode = 303)
+{
+   header('Location: ' . $url, true, $statusCode);
+   die();
 }
 ?>
+
+
