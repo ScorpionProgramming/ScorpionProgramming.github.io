@@ -11,20 +11,37 @@
 // function fillField($fieldName, $default){
 //     return isset($_POST[$fieldName]) ? $_POST[$fieldName] : $default;
 // }
-
+if(isset($_GET['id']))
+{ 
+    
+}
 $id = intval($_GET['id']);
-$con = connect();
+//$con = connect();
 $sql= "SELECT * FROM schueler WHERE id =".$id;
-$result = mysqli_query($con,$sql);
-$row = mysqli_fetch_assoc($result);
-$kurseKlassen = getKurse($row['id']);
+$result = getQueryResult($sql);
+if($result == null){
+    $row = emptySchueler();
+}else{    
+    $row = mysqli_fetch_assoc($result);
+    $kurseKlassen = getKurse($row['id']);
+}
 
+function emptySchueler(){
+    $row = array(
+        "id" => -1,
+        "vorname" => "",
+        "nachname"   => "",
+        "email"  => "",
+        "geburtstag" => "",        
+    );
+    return $row;
+}
 
-mysqli_close($con);
+//mysqli_close($con);
 ?>
 <form action="#" method="POST" id="schuelerForm">
             <div class="container-fluid">
-                <input type="hidden" name="hiddenID" value="<?php echo $row['id'];?>"/>
+                <input type="text" name="hiddenID" value="<?php echo $row['id'];?>"/>
                 <div class="form-row">
                     <div class="form-group col-md-3">
                         <input type="text" value="<?php echo $row['vorname'];?>" placeholder="Vorname" name="vorname" class="form-control" />
