@@ -44,7 +44,7 @@ if(isset($_GET['login'])) {
 	  
     //Überprüfung des Passworts
     if ($row !== false && password_verify($passwort, $row['passwort'])) {
-        $_SESSION['userid'] = $row['id'];
+        $_SESSION['email'] = $row['email'];
         //@todo weiterleiten
 		redirect('home.php');
     } else {

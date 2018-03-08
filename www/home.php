@@ -1,3 +1,16 @@
+<?php
+function redirect($url, $statusCode = 303)
+{
+   header('Location: ' . $url, true, $statusCode);
+   die();
+}
+?>
+<?php
+session_start();
+if(!isset($_SESSION['email'])) {
+    redirect('login.php');
+}
+?>
 <!doctype html>
 <html lang="de">
 
