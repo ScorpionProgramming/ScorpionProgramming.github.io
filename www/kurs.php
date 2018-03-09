@@ -51,24 +51,29 @@
         function saveKurs(){
             //kopiert aus "schueler.php"
             $connection = connect();
+            $id = 5;
             if($connection != null){
-                echo "hidden: ".$_POST['hiddenID'];
-                $id = ($_POST['hiddenID'] < 0) ? getNextID() : $_POST['hiddenID'];
-                $kursBez = checkIfEmpty($_POST['kursBez']);
-                $query = "INSERT INTO planer.kurs (id, bezeichnung, lehrerID, fachID) VALUES ($id, $nachname, $kursBez, $lehrerID, $kurs);";
+                //echo "hidden: ".$_POST['hiddenID'];
+                //$id = ($_POST['hiddenID'] < 0) ? getNextID() : $_POST['hiddenID'];
+                $id += 1;
+                $lehrerID = 1;
+                $kursID = 2;
+                $kursBez = $_POST['kursBez'];
+                $query = "INSERT INTO planer.kurs (id, bezeichnung, lehrerID, fachID) VALUES ('$id', '$kursBez', '$lehrerID', '$kursID');";
+                echo $query;
                 
                 //nochmal schauen was hier gemacht werden muss
-                //$result = $connection->query($query);
+                $result = $connection->query($query);
 
                 //kurs_schueler($kurs, $id, $connection);
             }
         }
     ?>
 
-    <form>
+    <form action="#" method="POST">
         <div class="form-group">
             <label for="inputAddress">Kurs Bezeichnung</label>
-            <input type="text" class="form-control" id="inputKurs" placeholder="Kursname angeben..." name=kursBez>
+            <input type="text" class="form-control" id="inputKurs" placeholder="Kursname angeben..." name="kursBez">
         </div>
         <div class="form-group col-md-4">
             <label for="inputState">zuständiges Fach:</label>
@@ -82,9 +87,15 @@
         </div>
         <div class="form-group row">
             <div class="col-sm-10">
-                <button type="submit" class="btn btn-primary">Hinzufügen</button>
+                <button type="submit" class="btn btn-primary" name="insert">Hinzufügen</button>
             </div>
         </div>
     </form>
 </body>
 </html>
+
+<?php
+    if(isset($_POST['insert'])){
+        saveKurs();
+    }
+?>
